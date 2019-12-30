@@ -12,6 +12,7 @@ import styles1 from './noEntryDairy.style';
 import styles2 from './withEntryDairy.style';
 import theme from './../../style/theme';
 import { dairies } from './../../../res/data';
+import styles from '../../sections/DairyCard/DairyCard.style';
 
 class myDairy extends Component {
 
@@ -21,7 +22,7 @@ class myDairy extends Component {
             dairies: [],
             search: '',
             date: new Date(),
-            isModalVisible: true,
+            isModalVisible: false,
         },
 
             this.arrayholder = [];
@@ -122,17 +123,18 @@ class myDairy extends Component {
                             />
                         </Text>
                     </View>
+
                     <View style={styles2.searchWrapper}>
                         <TextInput
-                            placeholder="Search Dairy ..."
+                            placeholder="Search Dairies ..."
                             placeholderTextColor={theme.Text_PRIMARY_COLOR + 90}
                             autoCorrect={false} // to stop auto correction on email field
                             style={styles2.search}
                             value={this.state.search}
                             onChangeText={text => this.searchFilterFunction(text)}
                         />
-                        <TouchableOpacity>
-                            <Ionicons name="ios-search" size={25} color='#00000090' />
+                        <TouchableOpacity style={styles2.searchButtonWrapper}>
+                            <Ionicons name="ios-search" size={25} color='#fcfbfb' />
                         </TouchableOpacity>
                     </View>
                 </View>
