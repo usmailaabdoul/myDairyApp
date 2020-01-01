@@ -9,6 +9,7 @@ const dairies = [
             require('./../res/img/dairyImg.jpg'),
         ],
         date: new Date(),
+        specialMemory: true
     },
     {
         id: 2,
@@ -17,6 +18,7 @@ const dairies = [
         mood: 'happy',
         images: null,
         date: new Date(),
+        specialMemory: true
     },
     {
         id: 3,
@@ -28,6 +30,7 @@ const dairies = [
             require('./../res/img/dairyImg.jpg'),
         ],
         date: new Date(),
+        specialMemory: true
     },
     {
         id: 4,
@@ -39,6 +42,7 @@ const dairies = [
             require('./../res/img/dairyImg.jpg'),
         ],
         date: new Date(),
+        specialMemory: false
     },
     {
         id: 5,
@@ -50,6 +54,7 @@ const dairies = [
             require('./../res/img/dairyImg.jpg'),
         ],
         date: new Date(),
+        specialMemory: false
     },
     {
         id: 6,
@@ -61,6 +66,7 @@ const dairies = [
             require('./../res/img/dairyImg.jpg'),
         ],
         date: new Date(),
+        specialMemory: false
     },
 ];
 

@@ -26,11 +26,11 @@ class Navigation extends Component {
                         hideNavBar={true}
                         default='Main'
                     >
-                        <Scene key='home' component={Home} icon={TabIcon} hideNavBar={true} title='Home' />
+                        {/* <Scene key='home' component={Home} icon={TabIcon} hideNavBar={true} title='Home' /> */}
                         <Scene key='myDiary' component={myDairy} icon={TabIcon} hideNavBar={true} title='my Diary' initial={true} />
-                        <Scene key='calendar' component={Calendar} icon={TabIcon} hideNavBar={true} title='Calendar' />
                         <Scene key='memories' component={Memories} icon={TabIcon} hideNavBar={true} title='Memories' />
-                        <Scene key='settings' component={Setting} icon={TabIcon} hideNavBar={true} title='Setting' />
+                        {/* <Scene key='calendar' component={Calendar} icon={TabIcon} hideNavBar={true} title='Calendar' /> */}
+                        {/* <Scene key='settings' component={Setting} icon={TabIcon} hideNavBar={true} title='Setting' /> */}
                     </Scene>
                 </Stack>
             </Router>

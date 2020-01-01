@@ -3,23 +3,10 @@ import { View, Text, Image, TouchableOpacity, } from 'react-native';
 import Moment from 'react-moment';
 import Feather from 'react-native-vector-icons/Feather';
 
-import styles from './DairyCard.style';
+import styles from './SpecialMemoryCard.style';
 import theme from './../../style/theme';
 
-class DairyCard extends Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            specialMemory: false
-        }
-    }
-
-    componentDidMount() {
-        this.setState({
-            specialMemory: this.props.dairy.specialMemory
-        })
-    }
+class SpecialMemoryCard extends Component {
 
     moodSelection() {
         const { dairy } = this.props;
@@ -43,16 +30,24 @@ class DairyCard extends Component {
         }
     }
 
-    modifySpecialMemory() {
-        this.setState({ specialMemory: !this.state.specialMemory })
-        this.props.dairy.specialMemory = this.state.specialMemory;
-    }
-
     render() {
         const { dairy } = this.props;
-        console.warn(dairy)
+
         return (
             <View style={[styles.dairyCard, { borderBottomColor: this.moodSelection() }]}>
+
+                {dairy.images == null ?
+                    null
+                    :
+                    <TouchableOpacity >
+                        <Image
+                            source={dairy.images[0]}
+                            style={styles.image}
+                        />
+                    </TouchableOpacity>
+
+                }
+
                 <View style={styles.dairyCardDate}>
                     <Text >
                         <Moment
@@ -62,32 +57,19 @@ class DairyCard extends Component {
                             date={dairy.date}
                         />
                     </Text>
-                    <TouchableOpacity onPress={() => this.modifySpecialMemory()}>
+                    <TouchableOpacity>
                         <Feather name="more-vertical" size={20} color='#9DA3AB' />
                     </TouchableOpacity>
                 </View>
-                <Text style={styles.dairyCardHeader}>{dairy.title}</Text>
 
-                <View style={styles.dairyContent}>
-                    {dairy.images == null ?
-                        null
-                        :
-                        <TouchableOpacity style={styles.imageWrapper}>
-                            <Image
-                                source={dairy.images[0]}
-                                style={styles.image}
-                            />
-                        </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={styles.dairyCardHeader}>{dairy.title}</Text>
+                    <Text style={styles.dairyContentText}>{(dairy.dairyContent).substr(0, 100)}...</Text>
+                </TouchableOpacity>
 
-                    }
-
-                    <TouchableOpacity style={{ flex: 1 }}>
-                        <Text style={styles.dairyContentText}>{(dairy.dairyContent).substr(0, 80)}...</Text>
-                    </TouchableOpacity>
-                </View>
             </View>
         )
     }
 }
 
-export default DairyCard;
+export default SpecialMemoryCard;

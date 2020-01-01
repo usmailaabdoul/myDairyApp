@@ -139,15 +139,6 @@ class myDairy extends Component {
                     </View>
                 </View>
 
-                <View style={styles2.welcomeCard}>
-                    <View style={styles2.welcomeTextWrapper}>
-                        <Text style={styles2.welcomeTextheading}>HELLO, Abdoul!</Text>
-                        <TouchableOpacity>
-                            <Feather name="more-vertical" size={20} color='#fcfbfb' />
-                        </TouchableOpacity>
-                    </View>
-                    <Text style={styles2.welcomeText}>how was your day, today?</Text>
-                </View>
             </View>
         )
     }
@@ -158,6 +149,7 @@ class myDairy extends Component {
 
         return (
             <SafeAreaView style={styles2.mainContainer} >
+                {this._withDairyEntriesHeader()}
                 <FlatList
                     initialNumToRender={dairies.length}
                     data={dairies}
@@ -165,7 +157,18 @@ class myDairy extends Component {
                         <DairyCard dairy={item} index={index} />
                     }
                     keyExtractor={(item) => item.id.toString()}
-                    ListHeaderComponent={this._withDairyEntriesHeader()}
+                    ListHeaderComponent={
+                        // this._withDairyEntriesHeader()
+                        <View style={styles2.welcomeCard}>
+                            <View style={styles2.welcomeTextWrapper}>
+                                <Text style={styles2.welcomeTextheading}>HELLO, Abdoul!</Text>
+                                <TouchableOpacity>
+                                    <Feather name="more-vertical" size={20} color='#fcfbfb' />
+                                </TouchableOpacity>
+                            </View>
+                            <Text style={styles2.welcomeText}>how was your day, today?</Text>
+                        </View>
+                    }
                 />
 
                 <ActionButton

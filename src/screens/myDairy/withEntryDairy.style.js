@@ -4,7 +4,7 @@ const styles2 = {
         flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center',
-        backgroundColor: theme.LIGHT_BACKGROUND_COLOR
+        backgroundColor: theme.WHITE_BACKGROUND_COLOR
     },
     actionButtonIcon: {
         color: theme.WHITE_BACKGROUND_COLOR,
@@ -15,8 +15,9 @@ const styles2 = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginHorizontal: 20,
-        marginVertical: 15
+        marginHorizontal: 15,
+        marginTop: 15,
+        marginBottom: 5
     },
     headerText: {
         color: theme.Text_PRIMARY_COLOR,
@@ -25,7 +26,7 @@ const styles2 = {
     },
     welcomeCard: {
         backgroundColor: theme.PRIMARY_COLOR,
-        marginHorizontal: 20,
+        marginHorizontal: 15,
         padding: 10,
         borderRadius: 5,
         shadowColor: '#000',
