@@ -9,7 +9,7 @@ import {
     Memories,
     Calendar
 } from './../screens';
-import TabIcon from './../components/TabIcon/TabIcon.component';
+import { TabIcon } from './../components/index';
 import styles from './Navigation.style';
 
 let backPressed = 0;
