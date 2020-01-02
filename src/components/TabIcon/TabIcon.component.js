@@ -69,7 +69,8 @@ export default TabIcon;
 
 const styles = {
     mainWrapper: {
-        flex: 1,
+        // flex: 1,
+        height: 56,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
