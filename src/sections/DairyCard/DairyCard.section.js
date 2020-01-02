@@ -49,8 +49,8 @@ class DairyCard extends Component {
     }
 
     render() {
+        
         const { dairy } = this.props;
-        console.warn(dairy)
         return (
             <View style={[styles.dairyCard, { borderBottomColor: this.moodSelection() }]}>
                 <View style={styles.dairyCardDate}>

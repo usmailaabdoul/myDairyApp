@@ -61,7 +61,7 @@ class Memories extends Component {
                     <View style={styles.searchWrapper}>
                         <TextInput
                             selectTextOnFocus
-                            placeholder="Search Dairies ..."
+                            placeholder="Search Memories ..."
                             placeholderTextColor={theme.Text_PRIMARY_COLOR + 90}
                             autoCorrect={false} // to stop auto correction on email field
                             style={styles.search}

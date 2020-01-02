@@ -70,6 +70,45 @@ const dairies = [
     },
 ];
 
+const reminders = [
+    {
+        id: 1,
+        title: 'Play football with friends',
+        date: '2 days ago',
+        completed: false,
+        color: 'green',
+    },
+    {
+        id: 2,
+        title: 'Go parting with friends',
+        date: '3 days ago',
+        completed: false,
+        color: 'yellow',
+    },
+    {
+        id: 3,
+        title: 'Study for Exams',
+        date: 'Dec, 2018',
+        completed: true,
+        color: 'purple',
+    },
+    {
+        id: 4,
+        title: 'Start going to Gym',
+        date: 'Feb, 2019',
+        completed: true,
+        color: 'red',
+    },
+    {
+        id: 5,
+        title: 'Trying out something to new',
+        date: 'Mar, 2019',
+        completed: true,
+        color: 'brown',
+    },
+    
+]
 export {
-    dairies
+    dairies,
+    reminders
 }

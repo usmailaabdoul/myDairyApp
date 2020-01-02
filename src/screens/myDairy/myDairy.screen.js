@@ -126,6 +126,7 @@ class myDairy extends Component {
 
                     <View style={styles2.searchWrapper}>
                         <TextInput
+                            selectTextOnFocus
                             placeholder="Search Dairies ..."
                             placeholderTextColor={theme.Text_PRIMARY_COLOR + 90}
                             autoCorrect={false} // to stop auto correction on email field
