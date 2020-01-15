@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import * as ReduxActions from './../../redux/actions/PostActions';
 
 
-import { NewDairy } from './../../sections/index';
+import { NewDairy, NewReminder } from './../../sections/index';
 import { ReminderCard } from './../../sections/index';
 import styles from './Home.style';
 
@@ -24,9 +24,10 @@ class Home extends Component {
 
     componentDidMount() {
         this.setState({ reminders: reminders });
+        // this.props.toggleNewReminderModal(true);
     }
 
-    toggleModal() { 
+    toggleModal() {
         this.props.toggleNewDairyModal(true);
     }
 
@@ -44,7 +45,7 @@ class Home extends Component {
                 <FlatList
                     vertical numColumns={2}
                     initialNumToRender={reminders.length}
-                    style={{width: '100%'}}
+                    style={{ width: '100%' }}
                     data={reminders}
                     renderItem={({ item, index }) =>
                         <ReminderCard reminder={item} index={index} />
@@ -52,6 +53,10 @@ class Home extends Component {
                     keyExtractor={(item) => item.id.toString()}
                 />
 
+                <NewDairy />
+
+                <NewReminder />
+                
                 <ActionButton buttonColor="#27AE60">
                     <ActionButton.Item buttonColor='#9b59b6' title="New Dairy" onPress={() => this.toggleModal()}>
                         <Icon name="md-create" size={25} color='white' />
@@ -61,8 +66,6 @@ class Home extends Component {
                     </ActionButton.Item>
                 </ActionButton>
 
-                <NewDairy/>
-
             </SafeAreaView>
         )
     }
@@ -71,6 +74,7 @@ class Home extends Component {
 function mapStateToProps(state) {
     return {
         newDairyModal: state.newDairyModal.data,
+        NewReminderModal: state.newReminderModal.data
     }
 }
 

@@ -8,8 +8,11 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginHorizontal: 15,
-        marginVertical: 10
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        marginBottom: 10,
+        backgroundColor: theme.BORDER_RADIUS_COLOR + 90
+   
     },
     headerText: {
         fontSize: 20,
