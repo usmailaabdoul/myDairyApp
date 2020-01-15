@@ -11,7 +11,7 @@ class DairyCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            specialMemory: false
+            // specialMemory: false
         }
     }
 
@@ -44,12 +44,18 @@ class DairyCard extends Component {
     }
 
     modifySpecialMemory() {
-        this.setState({ specialMemory: !this.state.specialMemory })
-        this.props.dairy.specialMemory = this.state.specialMemory;
+
+        if (this.props.dairy.specialMemory == false) {
+            this.setState({ specialMemory: true })
+            this.props.dairy.specialMemory = true;
+        } else {
+            this.setState({ specialMemory: false })
+            this.props.dairy.specialMemory = false;
+        }
     }
 
     render() {
-        
+
         const { dairy } = this.props;
         return (
             <View style={[styles.dairyCard, { borderBottomColor: this.moodSelection() }]}>
@@ -67,6 +73,7 @@ class DairyCard extends Component {
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.dairyCardHeader}>{dairy.title}</Text>
+                {/* <Text style={styles.dairyCardHeader}>{dairy.specialMemory ? 'true' : 'false'}</Text> */}
 
                 <View style={styles.dairyContent}>
                     {dairy.images == null ?
