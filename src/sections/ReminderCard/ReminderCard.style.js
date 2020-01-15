@@ -27,6 +27,15 @@ const styles = {
     dateText: {
         color: theme.WHITE_BACKGROUND_COLOR,
         fontSize: 14
+    },
+    completedContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    completedContainerText: {
+        marginRight: 3,
+        fontSize: 12,
+        color: theme.WHITE_BACKGROUND_COLOR
     }
 }
 

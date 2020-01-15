@@ -8,6 +8,19 @@ import theme from './../../style/theme';
 
 class ReminderCard extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            // completed: false
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            completed: this.props.reminder.completed
+        })
+    }
+
     moodSelection() {
         const { reminder } = this.props;
         if (reminder.color == 'green') {
@@ -30,18 +43,32 @@ class ReminderCard extends Component {
         }
     }
 
+    handleCompleted() {
+        
+        if( this.props.reminder.completed == false) {
+            this.setState({ completed: true })
+            this.props.reminder.completed = true;
+        } else {
+            this.setState({ completed: false })
+            this.props.reminder.completed = false;
+        }
+    }
+
     render() {
         const { reminder } = this.props;
 
         return (
-            <TouchableOpacity style={[styles.mainCard, { backgroundColor: this.moodSelection() }]}>
-                <Text style={[ styles.reminderTitle, reminder.completed ? {textDecorationLine: 'line-through'} : {textDecorationLine: 'none'} ]}>{reminder.title}</Text>
+            <TouchableOpacity onPress={() => this.handleCompleted()} style={[styles.mainCard, { backgroundColor: this.moodSelection() }]}>
+                <Text style={[styles.reminderTitle, reminder.completed ? { textDecorationLine: 'line-through' } : { textDecorationLine: 'none' }]}>{reminder.title}</Text>
 
                 <View style={styles.date}>
                     <Text style={styles.dateText}>{reminder.date}</Text>
                     {
                         reminder.completed ?
-                            <Icon name="ios-checkmark-circle" size={25} color='white' />
+                            <View style={styles.completedContainer}>
+                                <Text style={styles.completedContainerText}>Done</Text>
+                                <Icon name="ios-checkmark-circle" size={25} color='white' />
+                            </View>
                             :
                             null
                     }
