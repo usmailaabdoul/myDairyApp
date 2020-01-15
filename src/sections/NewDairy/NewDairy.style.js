@@ -1,8 +1,7 @@
 import theme from './../../style/theme'
 const styles = {
     rootContainer: {
-        height: '95%',
-        // flex: 1,
+        maxHeight: '95%',
         backgroundColor: 'white'
     },
     header: {
@@ -23,15 +22,7 @@ const styles = {
         flexWrap: 'wrap',
         marginHorizontal: 10
     },
-    moods: {
-        padding: 5,
-        margin: 5,
-        borderRadius: 5,
-        borderWidth: 1,
-    },
-    moodsText: {
-        fontSize: 16
-    },
+    
     inputContainer: {
         marginHorizontal: 15,
         marginTop: 25,
@@ -72,16 +63,16 @@ const styles = {
         fontSize: 16,
         paddingRight: 10
     },
-    searchButton: {
+    finishButton: {
         backgroundColor: theme.PRIMARY_COLOR,
         padding: 10,
-        position: 'absolute',
-        bottom: 0,
+        paddingVertical: 15,
+        marginTop: 5,
         justifyContent: 'flex-end',
         width: '100%',
         alignItems: 'center'
      },
-     searchButtonText: {
+     finishButtonText: {
          fontSize: theme.FONT_SIZE_LARGE,
          color: theme.WHITE_BACKGROUND_COLOR,
          fontWeight: theme.FONT_WEIGHT_HEAVY,
@@ -110,12 +101,12 @@ const styles = {
         flexWrap: 'wrap', 
     },
     uploadedImageContainer: { 
-        margin: 10, 
+        margin: 15, 
         width: '25%',
     },
     uploadedImage: { 
         width: 100, 
-        height: 100 
+        height: 100, 
     },
     dropPhotoBtn: {
         position: 'absolute',
@@ -124,7 +115,9 @@ const styles = {
         borderRadius: 10,
         backgroundColor: '#cd2f2b', 
         zIndex: 4,
-        margin: 5
+        justifyContent: 'flex-end',
+        alignSelf: 'flex-end',
+        marginVertical: 5,
     },
     dropPhotoBtnText: {
         color: '#fff',

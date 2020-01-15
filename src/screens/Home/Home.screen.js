@@ -4,6 +4,12 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { reminders } from './../../../res/data';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as ReduxActions from './../../redux/actions/PostActions';
+
+
+import { NewDairy } from './../../sections/index';
 import { ReminderCard } from './../../sections/index';
 import styles from './Home.style';
 
@@ -18,6 +24,10 @@ class Home extends Component {
 
     componentDidMount() {
         this.setState({ reminders: reminders });
+    }
+
+    toggleModal() { 
+        this.props.toggleNewDairyModal(true);
     }
 
     render() {
@@ -43,16 +53,29 @@ class Home extends Component {
                 />
 
                 <ActionButton buttonColor="#27AE60">
-                    <ActionButton.Item buttonColor='#9b59b6' title="New Dairy" onPress={() => console.log("notes tapped!")}>
+                    <ActionButton.Item buttonColor='#9b59b6' title="New Dairy" onPress={() => this.toggleModal()}>
                         <Icon name="md-create" size={25} color='white' />
                     </ActionButton.Item>
                     <ActionButton.Item buttonColor='#3498db' title="Add a Reminder" onPress={() => { }}>
                         <Icon name="ios-stopwatch" size={25} color='white' />
                     </ActionButton.Item>
                 </ActionButton>
+
+                <NewDairy/>
+
             </SafeAreaView>
         )
     }
 }
 
-export default Home;
+function mapStateToProps(state) {
+    return {
+        newDairyModal: state.newDairyModal.data,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ReduxActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

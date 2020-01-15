@@ -7,6 +7,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Moment from 'react-moment';
 import Modal from 'react-native-modal';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as ReduxActions from './../../redux/actions/PostActions';
+
 import { DairyCard, NewDairy } from './../../sections/index';
 import styles1 from './noEntryDairy.style';
 import styles2 from './withEntryDairy.style';
@@ -35,29 +39,10 @@ class myDairy extends Component {
     }
 
 
-    toggleModal() { this.setState({ isModalVisible: !this.state.isModalVisible }) }
-
-    renderModalContent() {
-        return (
-            <Modal
-                isVisible={this.state.isModalVisible}
-                style={{ margin: 0, justifyContent: 'flex-end', }}
-                onBackdropPress={() => this.setState({ isModalVisible: false })} //enables background click to disappear
-                backdropColor={theme.LIGHT_BACKGROUND_COLOR}
-                backdropOpacity={0.8}
-                onSwipeComplete={() => this.setState({ isModalVisible: false })}
-                swipeDirection={['down']}
-            // animationIn={'zoomInDown'}
-            // animationOut={'zoomOutUp'}
-            // animationInTiming={1000}
-            // animationOutTiming={1000}
-            // backdropTransitionInTiming={1000}
-            // backdropTransitionOutTiming={1000}
-            >
-                <NewDairy toggleModal={() => this.setState({ isModalVisible: !this.state.isModalVisible })} />
-            </Modal>
-        )
+    toggleModal() { 
+        this.props.toggleNewDairyModal(true);
     }
+
     _NoDairyEntries() {
 
         return (
@@ -182,8 +167,8 @@ class myDairy extends Component {
                     )}
                     onPress={() => this.toggleModal()}
                 />
-
-                {this.renderModalContent()}
+                        <NewDairy/>
+                {/* {this.renderModalContent()} */}
             </SafeAreaView>
         )
     }
@@ -205,4 +190,14 @@ class myDairy extends Component {
     }
 }
 
-export default myDairy;
+function mapStateToProps(state) {
+    return {
+        newDairyModal: state.newDairyModal.data,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ReduxActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(myDairy);

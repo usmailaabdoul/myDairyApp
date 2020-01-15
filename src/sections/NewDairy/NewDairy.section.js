@@ -6,6 +6,11 @@ import Modal from "react-native-modal";
 import Evilicon from 'react-native-vector-icons/EvilIcons';
 import ImagePicker from 'react-native-image-crop-picker';
 
+import { Mood } from './../../components/';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as ReduxActions from './../../redux/actions/PostActions';
 
 import styles from './NewDairy.style';
 import theme from './../../style/theme';
@@ -23,7 +28,7 @@ class NewDairy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isModalVisible: false,
+            isVisible: false,
             dairy: '',
             specialMemory: false,
             isSelectImageModalVisible: false,
@@ -35,19 +40,7 @@ class NewDairy extends Component {
         this.setState({ specialMemory: !this.state.specialMemory })
     }
 
-    toggleModal() {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-    };
-
-    getPhotoFromCamera() {
-        ImagePicker.openCamera({
-            cropping: true
-        }).then(image => {
-            this.addSelectedImageToState(image)
-        });
-    }
-
-    selectPhoto() {
+    openGallery() {
         ImagePicker.openPicker({
             multiple: true,
         }).then(images => {
@@ -69,93 +62,88 @@ class NewDairy extends Component {
         this.setState({ images })
     }
 
-    renderModalContent() {
-
-        return (
-            <View style={styles.modalContent}>
-                <TouchableOpacity onPress={() => this.getPhotoFromCamera()} style={[styles.modalIcon, { borderLeftWidth: 1 }]}>
-                    <Evilicon name='camera' size={45} color='#8C8893' />
-                    <Text style={styles.modalIconText}>Camera</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.selectPhoto()} style={[styles.modalIcon, { borderLeftWidth: 1 }]}>
-                    <Evilicon name='image' size={45} color='#8C8893' />
-                    <Text style={styles.modalIconText}>Gallery</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
-
     render() {
 
         return (
 
-            <View style={styles.rootContainer}>
-                {/* <ScrollView> */}
-                <View style={styles.header}>
-                    <Text style={styles.headerText}>How do you feel?</Text>
-                    <TouchableOpacity onPress={() => this.props.toggleModal()}>
-                        <AntDesign name='close' size={20} color='red' />
-                    </TouchableOpacity>
-                </View>
+            <Modal
+                isVisible={this.props.newDairyModal}
+                style={{ margin: 0, justifyContent: 'flex-end', }}
+                onBackdropPress={() => this.props.toggleNewDairyModal(false)} //enables background click to disappear
+            // backdropColor={theme.LIGHT_BACKGROUND_COLOR}
+            // backdropOpacity={0.8}
+            // onSwipeComplete={() => this.props.toggleNewDairyModal(false)}
+            // swipeDirection={['down']}
+            >
+                <View style={styles.rootContainer}>
+                    <ScrollView>
+                        <View style={styles.header}>
+                            <Text style={styles.headerText}>How do you feel?</Text>
+                            <TouchableOpacity onPress={() => this.props.toggleNewDairyModal(false)}>
+                                <AntDesign name='close' size={20} color='red' />
+                            </TouchableOpacity>
+                        </View>
 
-                <View style={styles.moodsWrapper}>
-                    {Moods.map((mood, key) =>
-                        <Mood mood={mood} key={key} />
-                    )}
-                </View>
+                        <View style={styles.moodsWrapper}>
+                            {Moods.map((mood, key) =>
+                                <Mood mood={mood} key={key} />
+                            )}
+                        </View>
 
-                <View style={styles.inputContainer}>
-                    <Text style={styles.headerText}>How was your day, Today?</Text>
-                    <View style={styles.inputWrapper}>
-                        <TextInput
-                            placeholder="Write anything you thing is worthy of Mentioning!"
-                            textAlignVertical={'top'}
-                            placeholderTextColor={theme.Text_PRIMARY_COLOR}
-                            multiline
-                            numberOfLines={7}
-                            autoCorrect={false} // to stop auto correction on email field
-                            style={styles.input}
-                            value={this.state.dairy}
-                            onChangeText={text => this.setState({ dairy: text })}
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.headerText}>How was your day, Today?</Text>
+                            <View style={styles.inputWrapper}>
+                                <TextInput
+                                    placeholder="Write anything you thing is worthy of Mentioning!"
+                                    textAlignVertical={'top'}
+                                    placeholderTextColor={theme.Text_PRIMARY_COLOR}
+                                    multiline
+                                    numberOfLines={7}
+                                    autoCorrect={false} // to stop auto correction on email field
+                                    style={styles.input}
+                                    value={this.state.dairy}
+                                    onChangeText={text => this.setState({ dairy: text })}
+                                />
+                            </View>
+                        </View>
+
+                        <View style={styles.imageWrapper}>
+                            <TouchableOpacity onPress={() => this.openGallery()}>
+                                <Text style={styles.imageHeaderText}>Add an Image</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.handleToggleSpecialMemory()} style={styles.iconWrapper}>
+                                <Text style={styles.iconText}>Special Memory?</Text>
+                                <FontAwesome name={this.state.specialMemory ? 'toggle-on' : 'toggle-off'} size={30} color={this.state.specialMemory ? theme.PRIMARY_COLOR + '' : theme.Text_PRIMARY_COLOR} />
+                            </TouchableOpacity>
+                        </View>
+
+                        <ShowUploadedImages
+                            dropPhoto={(img) => this.dropPhoto(img)}
+                            images={this.state.images}
                         />
-                    </View>
+                        <TouchableOpacity
+                            onPress={() => this.search()}
+                            style={styles.finishButton}>
+                            <Text style={styles.finishButtonText}>Finish</Text>
+                        </TouchableOpacity>
+                    </ScrollView>
                 </View>
-
-                <View style={styles.imageWrapper}>
-                    <TouchableOpacity onPress={() => this.toggleModal()}>
-                        <Text style={styles.imageHeaderText}>Add an Image</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.handleToggleSpecialMemory()} style={styles.iconWrapper}>
-                        <Text style={styles.iconText}>Special Memory?</Text>
-                        <FontAwesome name={this.state.specialMemory ? 'toggle-on' : 'toggle-off'} size={30} color={this.state.specialMemory ? theme.PRIMARY_COLOR + '' : theme.Text_PRIMARY_COLOR} />
-                    </TouchableOpacity>
-                </View>
-
-                <Modal
-                    isVisible={this.state.isModalVisible}
-                    style={styles.bottomModal}
-                    onBackdropPress={() => this.setState({ isModalVisible: false })} //enables background click to disappear
-                    onSwipeComplete={() => this.setState({ isVisible: false })} swipeDirection="down" //hides modal by swipping left
-                >
-                    {this.renderModalContent()}
-                </Modal>
-
-                <ShowUploadedImages
-                    dropPhoto={(img) => this.dropPhoto(img)}
-                    images={this.state.images}
-                />
-                <TouchableOpacity
-                    onPress={() => this.search()}
-                    style={styles.searchButton}>
-                    <Text style={styles.searchButtonText}>Finish</Text>
-                </TouchableOpacity>
-                {/* </ScrollView> */}
-            </View>
+            </Modal>
         )
     }
 }
 
-export default NewDairy;
+function mapStateToProps(state) {
+    return {
+        newDairyModal: state.newDairyModal.data,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ReduxActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewDairy);
 
 const ShowUploadedImages = (props) => {
     const { images } = props;
@@ -179,66 +167,4 @@ const ShowUploadedImages = (props) => {
             </View>
         </ScrollView>
     )
-}
-
-class Mood extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedMood: null,
-            toggleSelected: false,
-        };
-    }
-
-    handleMoodSelection(mood) {
-        // this.setState({ selectedMood: mood })
-        this.setState({ selectedMood: mood.title })
-
-    }
-
-    moodSelection(mood) {
-        const { selectedMood } = this.state;
-
-        if (selectedMood == 'very_happy') {
-            return this.setState({ selectedMood: theme.VERY_HAPPY_COLOR })
-        }
-        if (selectedMood == 'happy') {
-            return theme.HAPPY_COLOR
-        }
-        if (selectedMood == 'good') {
-            return theme.GOOD_COLOR
-        }
-        if (selectedMood == 'bleh') {
-            return theme.BLEH_COLOR
-        }
-        if (selectedMood == 'not_so_great') {
-            return theme.NOT_SO_GREAT
-        }
-        if (selectedMood == 'very_unhappy') {
-            return theme.VERY_UNHAPPY
-        }
-    }
-
-    render() {
-
-        const { mood } = this.props;
-        // console.warn(this.state.selectedMood)
-        return (
-
-            <TouchableOpacity onPress={() => this.setState({ selectedMood: mood.title, toggleSelected: !this.state.toggleSelected })}
-                style={[styles.moods,
-                this.state.toggleSelected &&
-                    this.state.selectedMood == mood.title
-                    ?
-                    { borderColor: mood.color, backgroundColor: mood.color + 50 }
-                    :
-                    { borderColor: mood.color, }
-                ]}
-            >
-                <Text style={styles.moodsText}>{mood.title}</Text>
-            </TouchableOpacity>
-
-        )
-    }
 }

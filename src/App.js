@@ -4,12 +4,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import Navigation from './navigation/Navigation'
 
-// import {createStore, applyMiddleware } from 'redux'; 
-// import { Provider } from 'react-redux';
-// import thunk from 'redux-thunk';
-// import reducers from './redux/reducers/index'; 
+import {createStore, applyMiddleware } from 'redux'; 
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import reducers from './redux/reducers/index'; 
 
-// const store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(reducers, applyMiddleware(thunk));
 
 const storage = new Storage({
   size: 1000,
@@ -41,9 +41,9 @@ global._gen422Errors = errors => {
 
 const App: () => React$Node = () => {
     return (
-    	// <Provider store={store}>
+    	<Provider store={store}>
       		<Navigation />
-    	// </Provider>
+    	</Provider>
     );
 };
 
