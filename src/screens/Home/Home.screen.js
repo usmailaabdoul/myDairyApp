@@ -24,11 +24,24 @@ class Home extends Component {
 
     componentDidMount() {
         this.setState({ reminders: reminders });
+        // reminders.reverse();
         // this.props.toggleNewReminderModal(true);
     }
 
-    toggleModal() {
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.reminders != this.props.reminders) {
+            this.setState({ reminders: nextProps.reminders })
+            
+        }
+        reminders.reverse();
+    }
+
+    toggleNewDairyModal() {
         this.props.toggleNewDairyModal(true);
+    }
+
+    toggleNewReminderModal() {
+        this.props.toggleNewReminderModal(true);
     }
 
     render() {
@@ -58,10 +71,10 @@ class Home extends Component {
                 <NewReminder />
                 
                 <ActionButton buttonColor="#27AE60">
-                    <ActionButton.Item buttonColor='#9b59b6' title="New Dairy" onPress={() => this.toggleModal()}>
+                    <ActionButton.Item buttonColor='#9b59b6' title="New Dairy" onPress={() => this.toggleNewDairyModal()}>
                         <Icon name="md-create" size={25} color='white' />
                     </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#3498db' title="Add a Reminder" onPress={() => { }}>
+                    <ActionButton.Item buttonColor='#3498db' title="Add a Reminder" onPress={() => { this.toggleNewReminderModal()}}>
                         <Icon name="ios-stopwatch" size={25} color='white' />
                     </ActionButton.Item>
                 </ActionButton>

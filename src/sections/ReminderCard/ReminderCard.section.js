@@ -23,29 +23,29 @@ class ReminderCard extends Component {
 
     moodSelection() {
         const { reminder } = this.props;
-        if (reminder.color == 'green') {
+        if (reminder.colorId == 1) {
             return '#6ECC64'
         }
-        if (reminder.color == 'yellow') {
+        if (reminder.colorId == 2) {
             return '#F9B72F'
         }
-        if (reminder.color == 'purple') {
+        if (reminder.colorId == 3) {
             return '#7A6EFC'
         }
-        if (reminder.color == 'red') {
+        if (reminder.colorId == 4) {
             return '#EB4135'
         }
-        if (reminder.color == 'brown') {
+        if (reminder.colorId == 5) {
             return theme.BLEH_COLOR
         }
-        if (reminder.color == 'dark') {
+        if (reminder.colorId == 6) {
             return theme.VERY_UNHAPPY
         }
     }
 
     handleCompleted() {
-        
-        if( this.props.reminder.completed == false) {
+
+        if (this.props.reminder.completed == false) {
             this.setState({ completed: true })
             this.props.reminder.completed = true;
         } else {
@@ -62,7 +62,15 @@ class ReminderCard extends Component {
                 <Text style={[styles.reminderTitle, reminder.completed ? { textDecorationLine: 'line-through' } : { textDecorationLine: 'none' }]}>{reminder.title}</Text>
 
                 <View style={styles.date}>
-                    <Text style={styles.dateText}>{reminder.date}</Text>
+                    <Text>
+                        <Moment
+                            element={Text}
+                            style={styles.dateText}
+                            format="ddd Do MMM"
+                            date={reminder.date}
+                        />
+                        {/* {reminder.date} */}
+                    </Text>
                     {
                         reminder.completed ?
                             <View style={styles.completedContainer}>

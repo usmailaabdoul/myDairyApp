@@ -34,7 +34,7 @@ class NewDairy extends Component {
             isSelectImageModalVisible: false,
             images: [],
 
-            selectedMood: [],
+            selectedMood: 'Very Happy',
         };
     }
 
@@ -85,7 +85,8 @@ class NewDairy extends Component {
             case 'Very Unhappy':
                 return this.setState({ selectedMood: mood})
                 break;
-
+            default:
+                return this.state.selectedMood
 
         }
     }

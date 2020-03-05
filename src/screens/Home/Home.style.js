@@ -8,7 +8,8 @@ const styles = {
 
     },
     headerContainer: {
-        marginVertical: 20,
+        marginTop: 20,
+        marginBottom: 5,  
     },
     mainHeaderText: {
         color: theme.Text_PRIMARY_COLOR,
