@@ -28,7 +28,7 @@ class Setting extends Component {
         return (
             <View style={styles.mainContainer}>
                 <ScrollView>
-                    <SettingCard marginTop={50}>
+                    <SettingCard marginTop={20}>
                         <TouchableOpacity style={styles.settingContainer}>
                             <View style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}>
                                 <Icon name='update' size={30} color='#7A6EFC' />

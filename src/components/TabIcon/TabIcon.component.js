@@ -38,7 +38,7 @@ const TabIcon = ({ title, focused, selected }) => {
                         name={iconName}
                         style={{ color: focused ? '#27ae60' : '#ccc' }}
                     />
-                    <Text style={{ fontSize: 16, color: textColor, fontWeight: '700' }}>{title}</Text>
+                    <Text style={{ fontSize: 14, color: textColor, }}>{title}</Text>
                 </View>
 
                 :

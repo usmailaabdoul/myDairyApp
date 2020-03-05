@@ -20,8 +20,8 @@ const Moods = [
     { title: 'Happy', color: theme.HAPPY_COLOR },
     { title: 'Good', color: theme.GOOD_COLOR },
     { title: 'Bleh', color: theme.BLEH_COLOR },
-    { title: 'Not so Good', color: theme.NOT_SO_GREAT },
-    { title: 'Very Unhappay', color: theme.VERY_UNHAPPY },
+    { title: 'Not so Great', color: theme.NOT_SO_GREAT },
+    { title: 'Very Unhappy', color: theme.VERY_UNHAPPY },
 ]
 class NewDairy extends Component {
 
@@ -33,6 +33,8 @@ class NewDairy extends Component {
             specialMemory: false,
             isSelectImageModalVisible: false,
             images: [],
+
+            selectedMood: [],
         };
     }
 
@@ -62,6 +64,32 @@ class NewDairy extends Component {
         this.setState({ images })
     }
 
+    moodSelection(mood) {
+
+        switch (mood) {
+            case 'Very Happy':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Happy':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Good':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Bleh':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Not so Great':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Very Unhappy':
+                return this.setState({ selectedMood: mood})
+                break;
+
+
+        }
+    }
+    
     render() {
 
         return (
@@ -71,7 +99,7 @@ class NewDairy extends Component {
                 style={{ margin: 0, justifyContent: 'flex-end', }}
                 onBackdropPress={() => this.props.toggleNewDairyModal(false)} //enables background click to disappear
             // backdropColor={theme.LIGHT_BACKGROUND_COLOR}
-            // backdropOpacity={0.8}
+            // backdropOpacity={0.5}
             // onSwipeComplete={() => this.props.toggleNewDairyModal(false)}
             // swipeDirection={['down']}
             >
@@ -85,9 +113,83 @@ class NewDairy extends Component {
                         </View>
 
                         <View style={styles.moodsWrapper}>
-                            {Moods.map((mood, key) =>
+                            {/* {Moods.map((mood, key) =>
                                 <Mood mood={mood} key={key} />
-                            )}
+                            )} */}
+
+                            <TouchableOpacity
+                                onPress={() => this.moodSelection(Moods[0].title)}
+                                style={[styles.moods,
+                                    this.state.selectedMood == Moods[0].title
+                                    ?
+                                    { borderColor: Moods[0].color, backgroundColor: Moods[0].color + 50 }
+                                    :
+                                    { borderColor: Moods[0].color, }
+                                ]}
+                            >
+                                <Text style={styles.moodsText}>{Moods[0].title}</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => this.moodSelection(Moods[1].title)}
+                                style={[styles.moods,
+                                    this.state.selectedMood == Moods[1].title
+                                    ?
+                                    { borderColor: Moods[1].color, backgroundColor: Moods[1].color + 50 }
+                                    :
+                                    { borderColor: Moods[1].color, }
+                                ]}
+                            >
+                                <Text style={styles.moodsText}>{Moods[1].title}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.moodSelection(Moods[2].title)}
+                                style={[styles.moods,
+                                    this.state.selectedMood == Moods[2].title
+                                    ?
+                                    { borderColor: Moods[2].color, backgroundColor: Moods[2].color + 50 }
+                                    :
+                                    { borderColor: Moods[2].color, }
+                                ]}
+                            >
+                                <Text style={styles.moodsText}>{Moods[2].title}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.moodSelection(Moods[3].title)}
+                                style={[styles.moods,
+                                    this.state.selectedMood == Moods[3].title
+                                    ?
+                                    { borderColor: Moods[3].color, backgroundColor: Moods[3].color + 50 }
+                                    :
+                                    { borderColor: Moods[3].color, }
+                                ]}
+                            >
+                                <Text style={styles.moodsText}>{Moods[3].title}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.moodSelection(Moods[4].title)}
+                                style={[styles.moods,
+                                    this.state.selectedMood == Moods[4].title
+                                    ?
+                                    { borderColor: Moods[4].color, backgroundColor: Moods[4].color + 50 }
+                                    :
+                                    { borderColor: Moods[4].color, }
+                                ]}
+                            >
+                                <Text style={styles.moodsText}>{Moods[4].title}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.moodSelection(Moods[5].title)}
+                                style={[styles.moods,
+                                    this.state.selectedMood == Moods[5].title
+                                    ?
+                                    { borderColor: Moods[5].color, backgroundColor: Moods[5].color + 50 }
+                                    :
+                                    { borderColor: Moods[5].color, }
+                                ]}
+                            >
+                                <Text style={styles.moodsText}>{Moods[5].title}</Text>
+                            </TouchableOpacity>
                         </View>
 
                         <View style={styles.inputContainer}>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
 import styles from './Mood.style';
+import theme from './../../style/theme';
 
 class Mood extends Component {
 
@@ -13,44 +14,47 @@ class Mood extends Component {
         };
     }
 
-    handleMoodSelection(mood) {
-        // this.setState({ selectedMood: mood })
-        this.setState({ selectedMood: mood.title })
+    moodSelection(mood) {
 
+        switch (mood) {
+            case 'Very Happy':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Happy':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Good':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Bleh':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Not so Great':
+                return this.setState({ selectedMood: mood})
+                break;
+            case 'Very Unhappy':
+                return this.setState({ selectedMood: mood})
+                break;
+
+
+        }
     }
 
-    moodSelection() {
-        const { selectedMood } = this.state;
 
-        if (selectedMood == 'very_happy') {
-            return this.setState({ selectedMood: theme.VERY_HAPPY_COLOR })
-        }
-        if (selectedMood == 'happy') {
-            return theme.HAPPY_COLOR
-        }
-        if (selectedMood == 'good') {
-            return theme.GOOD_COLOR
-        }
-        if (selectedMood == 'bleh') {
-            return theme.BLEH_COLOR
-        }
-        if (selectedMood == 'not_so_great') {
-            return theme.NOT_SO_GREAT
-        }
-        if (selectedMood == 'very_unhappy') {
-            return theme.VERY_UNHAPPY
-        }
-    }
 
     render() {
 
         const { mood } = this.props;
-        // console.warn(this.state.selectedMood)
+        console.warn(1,this.props.mood)
+        console.warn(2,this.state.selectedMood)
+
         return (
 
-            <TouchableOpacity onPress={() => this.setState({ selectedMood: mood.title, toggleSelected: !this.state.toggleSelected })}
+            <TouchableOpacity
+                // onPress={() => this.setState({ selectedMood: mood.title, toggleSelected: !this.state.toggleSelected })}
+                onPress={() => this.moodSelection(mood.title)}
                 style={[styles.moods,
-                this.state.toggleSelected &&
+                // this.state.toggleSelected &&
                     this.state.selectedMood == mood.title
                     ?
                     { borderColor: mood.color, backgroundColor: mood.color + 50 }
