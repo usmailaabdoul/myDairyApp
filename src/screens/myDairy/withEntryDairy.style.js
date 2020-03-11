@@ -14,19 +14,33 @@ const styles2 = {
     headerContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        // alignItems: 'center',
+        paddingHorizontal: 15,
+        paddingTop: 5,
+        paddingBottom: 5,
+        // marginBottom: 5,
+
+        backgroundColor: '#f8f8f8',
+        // justifyContent: 'center',
         alignItems: 'center',
-        marginHorizontal: 15,
-        marginTop: 15,
-        marginBottom: 5
+        // height: 60,
+        // paddingTop: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        elevation: 2,
+        position: 'relative'
     },
     headerText: {
-        color: theme.Text_PRIMARY_COLOR,
-        fontSize: 16,
+        // color: theme.Text_PRIMARY_COLOR,
+        color: theme.PRIMARY_COLOR,
+        fontSize: 20,
         fontWeight: 'bold'
     },
     welcomeCard: {
         backgroundColor: theme.PRIMARY_COLOR,
         marginHorizontal: 15,
+        marginTop: 10,
         padding: 10,
         borderRadius: 5,
         shadowColor: '#000',
@@ -105,7 +119,7 @@ const styles2 = {
         // width: '80%',
         paddingLeft: 15,
         fontSize: 16,
-        fontStyle: 'normal',
+        alignSelf: 'flex-end',
         color: theme.Text_PRIMARY_COLOR ,
         flex: 4
     },
@@ -113,7 +127,7 @@ const styles2 = {
         marginVertical: 5,
         backgroundColor: '#fcfbfb',
         flex: 2,
-        borderRadius: 90,
+        borderRadius: 5,
         borderColor: theme.BORDER_RADIUS_COLOR,
         borderWidth: 1,
         flexDirection: 'row',
@@ -124,9 +138,12 @@ const styles2 = {
         backgroundColor: theme.PRIMARY_COLOR,
         flex: 1,
         padding: 7.5, 
-        borderTopRightRadius: 90,
-        borderBottomRightRadius: 90,
-        alignItems: 'center'
+        borderTopRightRadius: 5,
+        borderBottomRightRadius: 5,
+        alignItems: 'center',
+        borderWidth: 1,
+        marginVertical: -1,
+        borderColor: theme.PRIMARY_COLOR
     }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import Moment from 'react-moment';
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -54,6 +55,11 @@ class DairyCard extends Component {
         }
     }
 
+    // gotoDairyDetails() {
+    //     const { dairy } = this.props;
+    //     Actions.DairyDetails({ dairy : dairyDetails})
+    // }
+
     render() {
 
         const { dairy } = this.props;
@@ -79,7 +85,7 @@ class DairyCard extends Component {
                     {dairy.images == null ?
                         null
                         :
-                        <TouchableOpacity style={styles.imageWrapper}>
+                        <TouchableOpacity onPress={() => Actions.dairyDetails({dairy : dairy})} style={styles.imageWrapper} >
                             <Image
                                 source={dairy.images[0]}
                                 style={styles.image}
@@ -88,7 +94,7 @@ class DairyCard extends Component {
 
                     }
 
-                    <TouchableOpacity style={{ flex: 1 }}>
+                    <TouchableOpacity onPress={() => Actions.dairyDetails({dairy : dairy})} style={{ flex: 1 }} >
                         <Text style={styles.dairyContentText}>{(dairy.dairyContent).substr(0, 80)}...</Text>
                     </TouchableOpacity>
                 </View>

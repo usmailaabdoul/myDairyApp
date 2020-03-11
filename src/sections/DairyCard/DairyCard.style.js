@@ -25,7 +25,7 @@ const styles = {
     },
     dairyCardDateText: {
         color: theme.Text_PRIMARY_COLOR,
-        fontSize: 16
+        fontSize: 14,
     },
     dairyCardHeader: {
         color: '#000000',

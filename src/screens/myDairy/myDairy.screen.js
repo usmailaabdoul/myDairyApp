@@ -96,16 +96,17 @@ class myDairy extends Component {
 
     _withDairyEntriesHeader() {
         return (
-            <View>
+            // <View>
                 <View style={styles2.headerContainer}>
-                    <View style={{ flex: 1, marginRight: 10 }}>
-                        <Text>
-                            <Moment
+                    <View style={{ flex: 1, marginRight: 10, }}>
+                        <Text style={styles2.headerText}>
+                            {/* <Moment
                                 element={Text}
                                 style={styles2.headerText}
                                 format="dddd Do MMM, YYYY"
                                 date={this.state.date}
-                            />
+                            /> */}
+                            Goto Dairy
                         </Text>
                     </View>
 
@@ -117,15 +118,16 @@ class myDairy extends Component {
                             autoCorrect={false} // to stop auto correction on email field
                             style={styles2.search}
                             value={this.state.search}
-                            onChangeText={text => this.searchFilterFunction(text)}
+                            // onChangeText={text => this.searchFilterFunction(text)}
+                            onChangeText={text => this.setState({search: text})}
                         />
-                        <TouchableOpacity style={styles2.searchButtonWrapper}>
+                        <TouchableOpacity onPress={() => this.searchFilterFunction(this.state.search) } style={styles2.searchButtonWrapper}>
                             <Ionicons name="ios-search" size={25} color='#fcfbfb' />
                         </TouchableOpacity>
                     </View>
                 </View>
 
-            </View>
+            // </View>
         )
     }
 

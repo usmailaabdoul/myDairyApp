@@ -7,7 +7,8 @@ import {
     Setting,
     myDairy,
     Memories,
-    Calendar
+    Calendar,
+    DairyDetails
 } from './../screens';
 import { TabIcon } from './../components/index';
 import styles from './Navigation.style';
@@ -55,8 +56,11 @@ class Navigation extends Component {
                         hideNavBar={true}
                         default='Main'
                     >
-                        <Scene key='home' component={Home} icon={TabIcon} hideNavBar={true} title='Home' />
-                        <Scene key='myDiary' component={myDairy} icon={TabIcon} hideNavBar={true} title='my Diary' initial={true} />
+                        <Scene key='home' component={Home} icon={TabIcon} hideNavBar={true} title='Home' initial={true}/>                        
+                        <Scene key='myDiary' title='my Diary' icon={TabIcon}>
+                            <Scene key='dairy' component={myDairy} hideNavBar={true} title='my Diary'/>
+                            <Scene key='dairyDetails' component={DairyDetails} title='Diary Details'/>
+                        </Scene>
                         <Scene key='memories' component={Memories} icon={TabIcon} hideNavBar={true} title='Memories' />
                         <Scene key='calendar' component={Calendar} icon={TabIcon} hideNavBar={true} title='Calendar' />
                         <Scene key='settings' component={Setting} icon={TabIcon} hideNavBar={true} title='Setting' />

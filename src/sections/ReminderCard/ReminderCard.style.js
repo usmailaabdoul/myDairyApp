@@ -3,15 +3,16 @@ import theme from './../../style/theme';
 const styles = {
     mainCard: {
         padding: 10,
-        width: '46%',
-        marginRight: 15,
-        marginVertical: 5,
+        width: '49%',
+        marginRight: 5,
+        marginVertical: 2,
         borderRadius: 5,
         justifyContent: 'space-between',
-        shadowColor: '#ccc',
-        shadowOffset: { width: 2, height: 2 },
-        shadowOpacity: 0.2,
-        elevation: 4,
+        // shadowColor: '#000',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.4 ,
+        // shadowRadius: 9,
+        elevation: 2,
         position: 'relative',
     },
     reminderTitle: {
@@ -26,7 +27,7 @@ const styles = {
     },
     dateText: {
         color: theme.WHITE_BACKGROUND_COLOR,
-        fontSize: 14
+        fontSize: 12
     },
     completedContainer: {
         flexDirection: 'row',
